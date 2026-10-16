@@ -1,0 +1,57 @@
+// test_hazard.hex : one 32-bit instruction per line (assembly shown as comments)
+00100093 // 0x0000: addi x1, x0, 1
+00108093 // 0x0004: addi x1, x1, 1
+00108093 // 0x0008: addi x1, x1, 1
+00108133 // 0x000c: add x2, x1, x1
+001101b3 // 0x0010: add x3, x2, x1
+10000213 // 0x0014: addi x4, x0, 256
+00322023 // 0x0018: sw x3, 0(x4)
+00022283 // 0x001c: lw x5, 0(x4)
+00528333 // 0x0020: add x6, x5, x5
+ffe00393 // 0x0024: addi x7, x0, -2
+00720223 // 0x0028: sb x7, 4(x4)
+00420403 // 0x002c: lb x8, 4(x4)
+00424483 // 0x0030: lbu x9, 4(x4)
+00721423 // 0x0034: sh x7, 8(x4)
+00821503 // 0x0038: lh x10, 8(x4)
+00825583 // 0x003c: lhu x11, 8(x4)
+00822603 // 0x0040: lw x12, 8(x4)
+05500693 // 0x0044: addi x13, x0, 85
+00d206a3 // 0x0048: sb x13, 13(x4)
+00c22703 // 0x004c: lw x14, 12(x4)
+00022783 // 0x0050: lw x15, 0(x4)
+00f22823 // 0x0054: sw x15, 16(x4)
+01022803 // 0x0058: lw x16, 16(x4)
+00500893 // 0x005c: addi x17, x0, 5
+00500913 // 0x0060: addi x18, x0, 5
+01288663 // 0x0064: beq x17, x18, skip1
+06300993 // 0x0068: addi x19, x0, 99
+06200993 // 0x006c: addi x19, x0, 98
+00100a13 // 0x0070: addi x20, x0, 1  [skip1:]
+07289063 // 0x0074: bne x17, x18, bad
+00200a93 // 0x0078: addi x21, x0, 2
+0548cc63 // 0x007c: blt x17, x20, bad
+0148d463 // 0x0080: bge x17, x20, ok2
+06300b13 // 0x0084: addi x22, x0, 99
+fff00c13 // 0x0088: addi x24, x0, -1  [ok2:]
+0188e463 // 0x008c: bltu x17, x24, ok3
+06300b93 // 0x0090: addi x23, x0, 99
+011c4463 // 0x0094: blt x24, x17, ok4  [ok3:]
+06300c93 // 0x0098: addi x25, x0, 99
+011c7463 // 0x009c: bgeu x24, x17, ok5  [ok4:]
+06300d13 // 0x00a0: addi x26, x0, 99
+00000d93 // 0x00a4: addi x27, x0, 0  [ok5:]
+00100e13 // 0x00a8: addi x28, x0, 1
+00b00e93 // 0x00ac: addi x29, x0, 11
+01cd8db3 // 0x00b0: add x27, x27, x28  [loop:]
+001e0e13 // 0x00b4: addi x28, x28, 1
+ffde1ce3 // 0x00b8: bne x28, x29, loop
+00c00f6f // 0x00bc: jal x30, func
+00700f93 // 0x00c0: addi x31, x0, 7
+0140006f // 0x00c4: j finish
+02a00293 // 0x00c8: addi x5, x0, 42  [func:]
+000f0067 // 0x00cc: jalr x0, 0(x30)
+06300293 // 0x00d0: addi x5, x0, 99
+fff00313 // 0x00d4: addi x6, x0, -1  [bad:]
+00000013 // 0x00d8: nop  [finish:]
+0000006f // 0x00dc: j done  [done:]

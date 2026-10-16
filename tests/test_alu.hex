@@ -1,0 +1,28 @@
+// test_alu.hex : one 32-bit instruction per line (assembly shown as comments)
+00a00093 // 0x0000: addi x1, x0, 10
+00300113 // 0x0004: addi x2, x0, 3
+002081b3 // 0x0008: add x3, x1, x2
+40208233 // 0x000c: sub x4, x1, x2
+0020f2b3 // 0x0010: and x5, x1, x2
+0020e333 // 0x0014: or x6, x1, x2
+0020c3b3 // 0x0018: xor x7, x1, x2
+00209433 // 0x001c: sll x8, x1, x2
+0020d4b3 // 0x0020: srl x9, x1, x2
+ff000513 // 0x0024: addi x10, x0, -16
+402555b3 // 0x0028: sra x11, x10, x2
+00255633 // 0x002c: srl x12, x10, x2
+001526b3 // 0x0030: slt x13, x10, x1
+00153733 // 0x0034: sltu x14, x10, x1
+00512793 // 0x0038: slti x15, x2, 5
+00213813 // 0x003c: sltiu x16, x2, 2
+0ff0c893 // 0x0040: xori x17, x1, 255
+0700e913 // 0x0044: ori x18, x1, 112
+0060f993 // 0x0048: andi x19, x1, 6
+00411a13 // 0x004c: slli x20, x2, 4
+01c55a93 // 0x0050: srli x21, x10, 28
+40255b13 // 0x0054: srai x22, x10, 2
+12345bb7 // 0x0058: lui x23, 0x12345
+678b8b93 // 0x005c: addi x23, x23, 0x678
+00001c17 // 0x0060: auipc x24, 1
+00708013 // 0x0064: addi x0, x1, 7
+0000006f // 0x0068: j done  [done:]
